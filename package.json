@@ -20,8 +20,7 @@
     }
   },
   "scripts": {
-    "build": "tsup",
-    "publish": "npm publish"
+    "build": "tsup"
   },
   "repository": {
     "type": "git",
