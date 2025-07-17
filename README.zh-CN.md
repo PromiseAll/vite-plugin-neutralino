@@ -29,13 +29,39 @@ pnpm add vite-plugin-neutralino -D
 
 ```typescript
 import { defineConfig } from 'vite';
-import neutralino from 'vite-plugin-neutralino';
 import vue from '@vitejs/plugin-vue';
+import neutralino from 'vite-plugin-neutralino';
 
 export default defineConfig({
   plugins: [
     vue(),
     neutralino(),
+  ],
+});
+```
+
+### 选项
+
+#### `rootPath`
+
+-   **类型:** `string`
+-   **默认值:** `config.root` (Vite 项目的根目录)
+
+允许您为 Neutralinojs 项目指定一个自定义的根目录。如果您的 Neutralinojs 应用与 Vite 项目的根目录不在同一个文件夹中，这个选项会非常有用。
+
+示例:
+
+```typescript
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import neutralino from 'vite-plugin-neutralino';
+
+export default defineConfig({
+  plugins: [
+    vue(),
+    neutralino({
+      rootPath: '../my-neutralino-app'
+    }),
   ],
 });
 ```
@@ -50,10 +76,7 @@ export default defineConfig({
 
 ### 生产环境
 
-在生产模式下 (`vite build`)，该插件会注入以下 script 标签：
-`<script src="%PUBLIC_URL%/__neutralino_globals.js"></script>`
-
-当您打包 Neutralinojs 应用时, Neutralinojs 会自动将 `%PUBLIC_URL%` 替换为正确的路径。
+在生产模式下 (`vite build`)，该插件会注入一个 `src` 为 `__neutralino_globals.js` 的 script 标签。
 
 ## 许可证
 

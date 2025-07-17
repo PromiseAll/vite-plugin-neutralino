@@ -2,20 +2,21 @@
   "name": "vite-plugin-neutralino",
   "version": "1.0.0",
   "description": "A Vite plugin for seamless integration with Neutralinojs.",
-  "main": "dist/index.js",
   "type": "module",
   "types": "dist/index.d.ts",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
   "files": [
     "dist",
     "README.md",
     "README.zh-CN.md",
-    "LICENSE",
-    "package.json"
+    "LICENSE"
   ],
   "exports": {
     ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     }
   },
   "scripts": {

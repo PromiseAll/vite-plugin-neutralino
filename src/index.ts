@@ -7,6 +7,17 @@ interface AuthInfo {
 }
 
 /**
+ * Plugin options.
+ */
+interface Options {
+    /**
+     * Custom root path for the Neutralinojs project.
+     * @default config.root
+     */
+    rootPath?: string;
+}
+
+/**
  * Gets the script tag for development mode by reading the auth info from the .tmp directory.
  * @param root - The project root directory.
  * @returns A promise that resolves to the script tag or null if not applicable.
@@ -44,13 +55,13 @@ function getProdScriptTag(): HtmlTagDescriptor {
     return {
         tag: 'script',
         attrs: {
-            src: '%PUBLIC_URL%/__neutralino_globals.js',
+            src: '__neutralino_globals.js',
         },
         injectTo: 'head-prepend',
     };
 }
 
-const neutralino = (): Plugin => {
+const neutralino = (options: Options = {}): Plugin => {
     let config: ResolvedConfig;
 
     return {
@@ -65,7 +76,8 @@ const neutralino = (): Plugin => {
                 }
 
                 if (config.mode === 'development') {
-                    const devTag = await getDevScriptTag(config.root);
+                    const root = options.rootPath || config.root;
+                    const devTag = await getDevScriptTag(root);
                     return devTag ? [devTag] : [];
                 }
 

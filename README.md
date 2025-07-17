@@ -31,13 +31,39 @@ Add the plugin to your `vite.config.ts`:
 
 ```typescript
 import { defineConfig } from 'vite';
-import neutralino from 'vite-plugin-neutralino';
 import vue from '@vitejs/plugin-vue';
+import neutralino from 'vite-plugin-neutralino';
 
 export default defineConfig({
   plugins: [
     vue(),
     neutralino(),
+  ],
+});
+```
+
+### Options
+
+#### `rootPath`
+
+-   **Type:** `string`
+-   **Default:** `config.root` (Vite's project root)
+
+Allows you to specify a custom root directory for your Neutralinojs project. This is useful if your Neutralinojs application is not in the same directory as your Vite project root.
+
+Example:
+
+```typescript
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import neutralino from 'vite-plugin-neutralino';
+
+export default defineConfig({
+  plugins: [
+    vue(),
+    neutralino({
+      rootPath: '../my-neutralino-app'
+    }),
   ],
 });
 ```
@@ -52,10 +78,7 @@ For this to work, make sure you run your Neutralinojs app before or alongside yo
 
 ### Production
 
-In production mode (`vite build`), the plugin injects the following script tag:
-`<script src="%PUBLIC_URL%/__neutralino_globals.js"></script>`
-
-Neutralinojs will replace `%PUBLIC_URL%` with the correct path when you bundle your application.
+In production mode (`vite build`), the plugin injects a script tag with `src` set to `__neutralino_globals.js`.
 
 ## License
 
