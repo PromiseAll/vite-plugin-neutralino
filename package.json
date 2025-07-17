@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-neutralino",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "A Vite plugin for seamless integration with Neutralinojs.",
   "type": "module",
   "types": "dist/index.d.ts",
